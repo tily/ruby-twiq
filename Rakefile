@@ -4,13 +4,16 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "ruby-twiq"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.name = "twiq"
+    gem.summary = %Q{simple queue system for twitter}
+    gem.description = %Q{simple queue system for twitter}
     gem.email = "tily05@gmail.com"
     gem.homepage = "http://github.com/tily/ruby-twiq"
     gem.authors = ["tily"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
+    gem.add_dependency = "sequel"
+    gem.add_dependency = "oauth-cli-twitter"
+    gem.executables = ["twiq"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
@@ -39,7 +42,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "ruby-twiq #{version}"
+  rdoc.title = "twiq #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+$:.unshift(File.dirname(__FILE__) + '/../lib') unless $:.include?(File.dirname(__FILE__) + '/../lib')
+require 'twiq'
+
+cmd = ARGV.shift
+cmds = %w(deq enq list clear)
+
+begin
+  if cmd && cmds.include?(cmd)
+    Twiq::Commands.stdout = STDOUT
+    Twiq::Commands.stdin  = STDIN
+    Twiq::Commands.send(cmd, ARGV)
+  else
+    raise Twiq::Error, 'command not found.'
+  end
+rescue Twiq::Error => e
+  puts "Error: #{e}"
+  puts <<-EOS
+Usage: twiq command arg1 [arg2]
+  enq user [text]    enqueue status text (if text is not specified, read STDIN lines)
+  deq user           dequeue to post to twitter
+  list [user]        list queue
+  help               show this help
+  clear [user]       clear queues (if user is not specified, delete all records)
+  EOS
+  exit 1
+end
+
