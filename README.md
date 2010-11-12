@@ -12,7 +12,6 @@ Usage
         enq user [text]    enqueue status text (if text is not specified, read STDIN lines)
         deq user           dequeue to post to twitter
         list [user]        list queue
-        help               show this help
         clear [user]       clear queues (if user is not specified, delete all records)
 
 Note
