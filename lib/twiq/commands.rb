@@ -9,7 +9,7 @@ module Twiq
 
     attr_accessor :stdout, :stdin
 
-    def enq(args)
+    def enq(*args)
       case args.size
       when 0
         raise Error, 'arguments required (at least 1)'
@@ -22,7 +22,7 @@ module Twiq
       end
     end
 
-    def deq(args)
+    def deq(*args)
       raise Error, 'user not specified.' if args.size == 0
       s = Statuses.filter(:user => args[0]).first
       Statuses.filter(:id => s[:id]).delete
@@ -30,7 +30,7 @@ module Twiq
       at.post('/statuses/update.json', 'status' => s[:text])
     end
 
-    def list(args)
+    def list(*args)
       statuses = args.size > 0 ? Statuses.filter(:user => args[0]) : Statuses.all
       stdout.puts "id\tuser\ttext"
       statuses.each do |s|
@@ -38,7 +38,7 @@ module Twiq
       end
     end
 
-    def clear(args)
+    def clear(*args)
       if args.size == 0
         Statuses.delete
       else
@@ -48,7 +48,7 @@ module Twiq
           when Integer then key = :id
           else next
           end
-          Statuses[key => arg].delete
+          Statuses.filter(key => arg).delete
         end
       end
     end

@@ -9,7 +9,7 @@ begin
   if cmd && cmds.include?(cmd)
     Twiq::Commands.stdout = STDOUT
     Twiq::Commands.stdin  = STDIN
-    Twiq::Commands.send(cmd, ARGV)
+    Twiq::Commands.send(cmd, *ARGV)
   else
     raise Twiq::Error, 'command not found.'
   end
