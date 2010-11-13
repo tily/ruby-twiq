@@ -33,6 +33,15 @@ describe Commands do
     it "raise error when it receives no argument" do
       lambda { Commands.deq }.should raise_error(Twiq::Error, 'user not specified.')
     end
+
+    it "raise error when there is no statuses of the user" do
+      user = 'dummy user'
+      Statuses.should_receive(:filter).with(:user => user).and_return(
+        mock.tap {|m| m.should_receive(:first).and_return(nil) }
+      )
+      lambda { Commands.deq(user) }.should raise_error(Twiq::Error, 'status not found.')
+    end
+
     it "dequeue first status of the user and post it to twitter" do
       id, user, text = 1, 'dummy user', 'dummy text'
 

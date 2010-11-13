@@ -25,6 +25,7 @@ module Twiq
     def deq(*args)
       raise Error, 'user not specified.' if args.size == 0
       s = Statuses.filter(:user => args[0]).first
+      raise Error, 'status not found.' unless s
       Statuses.filter(:id => s[:id]).delete
       at = get_access_token(CONSUMER_KEY, CONSUMER_SECRET, :pit => 'twiq-' + s[:user])
       at.post('/statuses/update.json', 'status' => s[:text])
