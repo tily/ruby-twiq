@@ -9,10 +9,10 @@ Simple queue system for Twitter.
 Usage
 -----
 
-        enq user [text]    enqueue status text (if text is not specified, read STDIN lines)
-        deq user           dequeue to post to twitter
-        list [user]        list queue
-        clear [user]       clear queues (if user is not specified, delete all records)
+        twiq enq user [text]    enqueue status text (if text is not specified, read STDIN lines)
+        twiq deq user           dequeue to post to twitter
+        twiq list  [user]       list queue
+        twiq clear [user]       clear queues (if user is not specified, delete all records)
 
 Note
 ----
@@ -28,12 +28,6 @@ Requirement
 
 Install
 -------
-
-### Archive Installation
-
-        rake install
-
-### Gem Installation
 
         gem install twiq
 
