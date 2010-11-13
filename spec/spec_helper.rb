@@ -1,9 +1,5 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-require 'ruby-twiq'
-require 'spec'
-require 'spec/autorun'
+require 'twiq'
+require 'rspec'
 
-Spec::Runner.configure do |config|
-  
-end
